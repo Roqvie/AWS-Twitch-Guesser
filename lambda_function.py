@@ -5,7 +5,7 @@ import re
 
 def _post_is_right(POST, keys):
     """Проверка POST-запроса по необходимым в запросе ключам"""
-    
+
     keys_is_available = [True if key in POST else False for key in keys ]
     if all(keys_is_available):
         return True
@@ -44,7 +44,7 @@ def lambda_handler(event, context):
             if user_message:
                 match = re.findall(r':(\w+)!.*:([\S\s]+)', user_message)
                 if match:
-                    if WORD in match[0][1] and len(winners) < NUM_OF_WINNERS:
+                    if WORD.lower() == match[0][1].lower() and len(winners) < NUM_OF_WINNERS:
                         winners.append(match[0][0])
 
     if winners:
