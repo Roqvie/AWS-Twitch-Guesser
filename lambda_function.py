@@ -2,13 +2,32 @@ import json
 import socket
 import re
 
+
+def _post_is_right(POST, keys):
+    """Проверка POST-запроса по необходимым в запросе ключам"""
+    
+    keys_is_available = [True if key in POST else False for key in keys ]
+    if all(keys_is_available):
+        return True
+    else:
+        return False
+
+
 def lambda_handler(event, context):
 
-    TOKEN = event['token']
-    USERNAME = event['username']
-    CHANNEL = event['channel']
-    WORD = event['word']
-    NUM_OF_WINNERS = int(event['num_of_winners'])
+    if _post_is_right(event,["token", "username", "channel", "word", "num_of_winners"]):
+        TOKEN = event['token']
+        USERNAME = event['username']
+        CHANNEL = event['channel']
+        WORD = event['word']
+        NUM_OF_WINNERS = int(event['num_of_winners'])
+    else:
+        return {
+            'statusCode': 200,
+            'body': {
+                'error': 'NotEnoughParameters'
+            }
+        }
 
     connection = ('irc.chat.twitch.tv', 6667)
     server = socket.socket()
@@ -36,5 +55,7 @@ def lambda_handler(event, context):
     else:
         return {
             'statusCode': 200,
-            'body': 'not found'
+            'body': {
+                'error': 'not found'
+            }
         }
