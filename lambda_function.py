@@ -1,6 +1,7 @@
 import json
 import socket
 import re
+import os
 
 
 def _post_is_right(POST, keys):
@@ -15,9 +16,9 @@ def _post_is_right(POST, keys):
 
 def lambda_handler(event, context):
 
-    if _post_is_right(event,["token", "username", "channel", "word", "num_of_winners"]):
-        TOKEN = event['token']
-        USERNAME = event['username']
+    if _post_is_right(event,["channel", "word", "num_of_winners"]):
+        TOKEN = os.environ.get('BOT_TOKEN')
+        USERNAME = os.environ.get('BOT_USERNAME')
         CHANNEL = event['channel']
         WORD = event['word']
         NUM_OF_WINNERS = int(event['num_of_winners'])
@@ -28,7 +29,7 @@ def lambda_handler(event, context):
                 'error': 'NotEnoughParameters'
             }
         }
-
+    
     connection = ('irc.chat.twitch.tv', 6667)
     server = socket.socket()
     server.connect(connection)
@@ -56,6 +57,6 @@ def lambda_handler(event, context):
         return {
             'statusCode': 200,
             'body': {
-                'error': 'not found'
+                'error': 'NotFound'
             }
         }
