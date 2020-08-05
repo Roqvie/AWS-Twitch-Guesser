@@ -29,7 +29,7 @@ def lambda_handler(event, context):
                 'error': 'NotEnoughParameters'
             }
         }
-    
+
     connection = ('irc.chat.twitch.tv', 6667)
     server = socket.socket()
     server.connect(connection)
@@ -51,7 +51,9 @@ def lambda_handler(event, context):
     if winners:
         return {
             'statusCode': 200,
-            'body': winners
+            'body': {
+                'winners': winners
+            }
         }
     else:
         return {
