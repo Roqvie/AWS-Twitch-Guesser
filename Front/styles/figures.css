@@ -1,0 +1,81 @@
+.circle-1, .circle-2, .circle-3, .circle-4, .circle-5, .circle-6, .circle-7 {
+	border-radius: 50%;
+	background-color: #E8DB7D;
+	opacity: .5;
+	position: absolute;
+	overflow: hidden;
+	clip-path: view-box;
+	z-index: 90;
+}
+
+.circle-animation {
+	animation: scaleIn 0.75s cubic-bezier(.36, .11, .89, .32);
+}
+
+.circle-1 {
+	width: 3000px;
+	height: 3000px;
+	left: -1400px;
+	top: -1425px;
+	background-color: #EFE176;
+}
+
+.circle-2 {
+	width: 2000px;
+	height: 2000px;
+	left: -900px;
+	top: -925px;
+	background-color: #F4E471;
+	z-index: 92;
+	animation-delay: .1s;
+}
+
+.circle-3 {
+	width: 1950px;
+	height: 1950px;
+	left: -875px;
+	top: -900px;
+	background-color: #F8EEA0;
+	z-index: 91;
+	animation-delay: .1s;
+}
+
+.circle-4 {
+	width: 1600px;
+	height: 1600px;
+	left: -700px;
+	top: -725px;
+	background-color: #F4E471;
+	z-index: 94;
+	animation-delay: .2s;
+}
+
+.circle-5 {
+	width: 1620px;
+	height: 1620px;
+	left: -710px;
+	top: -735px;
+	background-color: #E8D43B;
+	z-index: 93;
+	animation-delay: .2s;
+}
+
+.circle-6 {
+	width: 1200px;
+	height: 1200px;
+	left: -500px;
+	top: -525px;
+	background-color: #F8EEA0;
+	z-index: 95;
+	animation-delay: .3s;
+}
+
+.circle-7 {
+	width: 1020px;
+	height: 1020px;
+	left: -410px;
+	top: -435px;
+	background-color: #F8EEA0;
+	z-index: 96;
+	animation-delay: .3s;
+}
